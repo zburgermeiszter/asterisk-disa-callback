@@ -29,15 +29,28 @@ Magyarázat a konfig fájlok szekcióihoz:
 
 Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más paramétereket.
 
-**TRIGGER_NUMBER**<br>
-Erre a számra érkezik a visszahívási kérelem. (Példa: 0621380....)
-
 **ALLOWED_NUMBER_0**<br>
 Az első telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
 Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.
 
 **OUTBOUND_CALLERID**<br>
 Ez a szám lesz beállítva hívóazonosítónak a kimenő híváshoz. (Example: 0036201234567)
+
+**RECORD_CALL**<br>
+Hívásrögzítés bekapcsolása.<br>
+Be: **ON**<br>
+Ki: **OFF**
+
+**RECORD_FORMAT**<br>
+Hívásrögzítési formátum.<br>
+Alapértelmezett **wav**.
+
+**RECORD_PATH**<br>
+Hívásrögzítési útvonal. <br>
+Alapértelmezett: **/var/spool/asterisk/monitor/**
+
+**TRIGGER_NUMBER**<br>
+Erre a számra érkezik a visszahívási kérelem. (Példa: 0621380....)
 
 ###extensions.conf
 **[disa-request]**<br>
