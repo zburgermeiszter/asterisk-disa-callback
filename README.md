@@ -25,6 +25,8 @@ Ha 0t nyomtál elkezdheted beütni a hívni kívánt telefonszámot nemzetközi 
 
 Ezután a központ felhívja a beütött számot, majd összekapcsol vele.
 
+A a kimenő hívás hívóazonosítója a visszahívást fogadó telefonszám lesz. Tehát olyan, mintha a saját számodról hívnád. Ezen funkció helyes működéséhez ne felejtsd el hozzáadni a (FVD/BC) webes felületen a telefonszámot, mert csak azokat a telefoszámokat tudja kijelezni a rendszer amik meg lettek erősítve korábban.
+
 ##Hogyan használd ezt a leírást:
 
 Magyarázat a konfig fájlok szekcióihoz:
