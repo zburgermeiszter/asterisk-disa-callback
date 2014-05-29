@@ -101,5 +101,5 @@ A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmw
 - asterisk11-codec-ulaw
 - asterisk11-func-groupcount
 
-Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:
+Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:<br>
 **src/gz snapshots http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/**
