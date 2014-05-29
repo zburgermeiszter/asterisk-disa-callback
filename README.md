@@ -89,7 +89,7 @@ A visszahívási kérelmet fogadó fiókot ebben a fájlban is be kell állítan
 ##Hardverplatform konfigurációk
 Erre a részre akkor lesz szükséged, ha valamilyen hardveren szeretnéd használni a konfig csomagot.
 
-## TP-LINK TL-WR1043ND (OpenWRT)
+### TP-LINK TL-WR1043ND (OpenWRT)
 A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmware használatával felteleptheted rá az Asterisk alközpontot. Ahhoz, hogy a mellékelt konfigfájlok megfelelően működjenek, az alábbi csomagokat érdemes teleptened (11.8.1-1 verzióval tesztelve):
 
 - asterisk11
