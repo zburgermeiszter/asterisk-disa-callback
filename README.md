@@ -19,7 +19,7 @@ Biztonsági okokból csak az engedélyezett számokat hívja vissza, így nem ke
 
 Amikor felveszed a központ visszahívását, egy tárcsahangot fogsz kapni. 
 
-Ekkor ha 1-9 ig nyomsz gombot, akkor a gyorshívásra betárolt számokat fogja hívni, ha olyat választottál ami üres memóriahely, akkor marad a választómenüben és újat pbálhatsz, ha 0-t nyomsz, akkor nem betárolt telefoszámot hívhatsz.
+Ekkor ha 1-9 ig nyomsz gombot, akkor a gyorshívásra betárolt számokat fogja hívni, ha olyat választottál ami üres memóriahely, akkor marad a választómenüben és újat próbálhatsz, ha 0-t nyomsz, akkor nem betárolt telefoszámot hívhatsz.
 
 Ha 0t nyomtál elkezdheted beütni a hívni kívánt telefonszámot nemzetközi formátumban. (A + jel helyett 00 tárcsázandó) majd miután begépelted a számot, nyomd meg a **#** gombot a hívás indításához).
 
@@ -84,3 +84,22 @@ Alapesetben a **bc_out** az a fiók amelyik visszahív, **fvd_out** pedig a kime
 
 ### sip_registers.conf
 A visszahívási kérelmet fogadó fiókot ebben a fájlban is be kell állítanod.
+
+
+##Hardverplatform konfigurációk
+Erre a részre akkor lesz szükséged, ha valamilyen hardveren szeretnéd használni a konfig csomagot.
+
+## TP-LINK TL-WR1043ND (OpenWRT)
+A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmware használatával felteleptheted rá az Asterisk alközpontot. Ahhoz, hogy a mellékelt konfigfájlok megfelelően működjenek, az alábbi csomagokat érdemes teleptened (11.8.1-1 verzióval tesztelve):
+
+- asterisk11
+- asterisk11-app-originate
+- asterisk11-app-read
+- asterisk11-app-system
+- asterisk11-codec-alaw
+- asterisk11-codec-gsm
+- asterisk11-codec-ulaw
+- asterisk11-func-groupcount
+
+Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:
+**src/gz snapshots http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/**
