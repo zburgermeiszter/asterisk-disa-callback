@@ -25,7 +25,7 @@ Ha 0t nyomtál elkezdheted beütni a hívni kívánt telefonszámot nemzetközi 
 
 Ezután a központ felhívja a beütött számot, majd összekapcsol vele.
 
-A a kimenő hívás hívóazonosítója a visszahívást fogadó telefonszám lesz. Tehát olyan, mintha a saját számodról hívnád. Ezen funkció helyes működéséhez ne felejtsd el hozzáadni a (FVD/BC) webes felületen a telefonszámot, mert csak azokat a telefoszámokat tudja kijelezni a rendszer amik meg lettek erősítve korábban.
+A kimenő hívás hívóazonosítója a visszahívást fogadó telefonszám lesz. Tehát olyan, mintha a saját számodról hívnád. Ezen funkció helyes működéséhez ne felejtsd el hozzáadni a (FVD/BC) webes felületen a telefonszámot, mert csak azokat a telefoszámokat tudja kijelezni a rendszer amik meg lettek erősítve korábban.
 
 ##Hogyan használd ezt a leírást:
 
@@ -35,8 +35,8 @@ Magyarázat a konfig fájlok szekcióihoz:
 
 Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más paramétereket.
 
-**ALLOWED_NUMBER_0**<br>
-Az első telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
+**ALLOWED_NUMBER_0 .. n**<br>
+Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
 Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.
 
 **RECORD_CALL**<br>
@@ -52,8 +52,27 @@ Alapértelmezett **wav**.
 Hívásrögzítési útvonal. <br>
 Alapértelmezett: **/var/spool/asterisk/monitor/**
 
+**REWRITE_COUNTRY**<br>
+Azon országnak a kódja amelyiknek a helyi telefonszám formátumát át szeretnénk írni nemzetközi formátumba hívószámkijelzéshez.
+Jelenleg csak a "hu" kód él.
+Átalakítja a 06 os számokat 0036 os számokká.
+Ha csak 7 számjegyű a hívóazonosító érkezik, eléfűzi a 0621 előtagot.
+Ha nem magyar szám érkezik (pl 0044...) akkor nem ír át semmit.
+Ez azt jelenti, hogy engedélyezett számnak lehet vegyesen magyar és külföldk számot is megadni.
+FONTOS, hogy a visszahíváskérést fogadó telefonszám MAGYAR legyen. 
+(Pl valamilyen 21 es körzetű szám)
+
+**TRUNK_CALLBACK**<br>
+Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
+(A fiók neve a sip_providers.conf ban lévő kategória neve.)
+
+**TRUNK_OUTGOING**<br>
+Annak a SIP fióknak a neve amelyiken a kimenő hívást szeretnénk indítani.
+(A fiók neve a sip_providers.conf ban lévő kategória neve.)
+
 **TRIGGER_NUMBER**<br>
 Erre a számra érkezik a visszahívási kérelem. (Példa: 0621380....)
+(Jelenleg nem használt)
 
 **QUICKDIAL_1 .. 9**<br>
 Gyorshívás gombok telefonszámai 1-9
