@@ -66,9 +66,15 @@ FONTOS, hogy a visszahíváskérést fogadó telefonszám MAGYAR legyen.
 Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
 (A fiók neve a sip_providers.conf ban lévő kategória neve.)
 
+**TRUNK_CALLBACK_MAX_CALLS**<br>
+A visszahívást indító SIP fiókon engedélyezett egyidejű hívások száma.
+
 **TRUNK_OUTGOING**<br>
 Annak a SIP fióknak a neve amelyiken a kimenő hívást szeretnénk indítani.
 (A fiók neve a sip_providers.conf ban lévő kategória neve.)
+
+**TRUNK_OUTGOING_MAX_CALLS**<br>
+A kimenő hívást indító SIP fiókon engedélyezett egyidejű hívások száma.
 
 **TRIGGER_NUMBER**<br>
 Erre a számra érkezik a visszahívási kérelem. (Példa: 0621380....)
@@ -80,15 +86,36 @@ Gyorshívás gombok telefonszámai 1-9
 ###extensions.conf
 **[disa-request]**<br>
 A visszahívási kérelem ebbe a contextbe fog érkezni.
+Itt dől el, hogy engedélyezett számról van-e szó, és visszahívható-e?
 
 **[disa-out]**<br>
-Ez a context kéri be a hívandó telefonszámot. Jelenleg ez a context tárcsahangot ad.
+Ez a context kéri be a gyorshívást, 0 megnyomása esetén pedig a hívandó telefonszámot. 
+Jelenleg ez a context tárcsahangot ad.
 
 **[outbound]**<br>
 A tárcsahangnál beütött telefonszám hívása ezen a contexten keresztül fog megtörténni.
 
+**[busy]**<br>
+Ennek a contextnek a foglalt jelzés küldés a célja.
+
+**[hangup]**<br>
+Ennek a contextnek a hívásmegszakítás a célja.
+
 **[hangup-context]**<br>
-Ennek a contextnek jelenleg csupán a hívásmegszakítás a célja.
+Jelenleg nem használt.
+
+**[originate-context]**<br>
+Ezen a contexten keresztül végezzük a hívószámkijelzéses visszahívás indítását.
+
+**[macro-sip-dialer]**<br>
+Ez a makró végez minden kimenő hívásindítást, az alapján, hogy az egyidőben engedélyezett hívások számát túlléptük e.
+
+**[macro-stdvoip]**<br>
+Jelenleg nem használt.
+(A sip-dialer egyszerűsített verziója)
+
+**[macro-international-format]**<br>
+Ez a makró végzi eg a telefonszámok helyi formátumról (06) nemzetközi formátumra (0036) alakítását.
 
 ### sip.conf
 
@@ -96,14 +123,14 @@ Alap konfig fájl, ami további beállítófájlokat tölt be.
 
 ### sip_providers.conf
 
-Itt be kell állítanod a SIP fiókokat amiket használni szeretnél a visszahívási folyamat során.
+Itt be kell állítanod a SIP fiókokat amiket használni szeretnél a hívások során.
 
 Alapesetben a **bc_out** az a fiók amelyik visszahív, **fvd_out** pedig a kimenő hívás fiókja.
 **NeoPhoneX-in** a visszahívási kérelmet fogadó fiók.
 
 ### sip_registers.conf
 A visszahívási kérelmet fogadó fiókot ebben a fájlban is be kell állítanod.
-
+Célszerű IP címet megadni URL helyett egyes eszközökön.
 
 ##Hardverplatform konfigurációk
 Erre a részre akkor lesz szükséged, ha valamilyen hardveren szeretnéd használni a konfig csomagot.
