@@ -134,9 +134,9 @@ Alap konfig fájl, ami további beállítófájlokat tölt be.
 ### sip_clients.conf
 
 Belső mellékek konfigurációs fájlja.<br>
-**\[client1\](internal_clients)** Egy mellék szekciója. Kívánt számban lemásolható.<br>
-**\[client1\]** \[Felhasználónév\]<br>
-**secret ** Jelszó (Lehetőleg random, minimum 16 karakteres értéket állíts be jelszónak.)<br>
+**&#91;client1&#93;(internal_clients)** Egy mellék szekciója. Kívánt számban lemásolható.<br>
+**&#91;client1&#93;** &#91;Felhasználónév&#93;<br>
+**secret** Jelszó (Lehetőleg random, minimum 16 karakteres értéket állíts be jelszónak.)<br>
 **cid_number** A mellék kimenő hívásokhoz küldendő hívóazonosítója.
 
 ### sip_providers.conf
