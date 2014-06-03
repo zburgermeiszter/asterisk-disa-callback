@@ -39,6 +39,11 @@ Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más par
 Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
 Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.
 
+**ALLOW_INTERNALS_OUTBOUND**<br>
+Belső mellékek kimenő irányú hívásainak engedélyezése.
+Be: **ON**<br>
+Ki: **OFF**
+
 **RECORD_CALL**<br>
 Hívásrögzítés bekapcsolása.<br>
 Be: **ON**<br>
@@ -117,9 +122,22 @@ Jelenleg nem használt.
 **[macro-international-format]**<br>
 Ez a makró végzi eg a telefonszámok helyi formátumról (06) nemzetközi formátumra (0036) alakítását.
 
+### extensions_internal.conf
+
+A belső mellékek routolását irányító dialplan részlet.
+
+
 ### sip.conf
 
 Alap konfig fájl, ami további beállítófájlokat tölt be.
+
+### sip_clients.conf
+
+Belső mellékek konfigurációs fájlja.<br>
+**\[client1\](internal_clients)** Egy mellék szekciója. Kívánt számban lemásolható.<br>
+**\[client1\]** \[Felhasználónév\]<br>
+**secret ** Jelszó (Lehetőleg random, minimum 16 karakteres értéket állíts be jelszónak.)<br>
+**cid_number** A mellék kimenő hívásokhoz küldendő hívóazonosítója.
 
 ### sip_providers.conf
 
