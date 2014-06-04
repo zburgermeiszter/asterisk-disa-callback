@@ -165,5 +165,14 @@ A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmw
 - asterisk11-codec-ulaw
 - asterisk11-func-groupcount
 
-Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:<br>
-**src/gz snapshots http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/**
+Telepítés után engedélyezned kell a bekapcsoláskori indulást a System &gt; Startup fülön.
+
+Kézi: <br />
+- Indítás: **/etc/init.d/asterisk start**<br />
+- Leállítás: **/etc/init.d/asterisk stop**<br />
+- Újraindítás: **/etc/init.d/asterisk restart**<br />
+
+Asterisk konzol: **asterisk -rvvvvvv**<br />
+
+A hangfájlok elérési útja ezen az eszközön:<br />
+**/usr/lib/asterisk/sounds/**
