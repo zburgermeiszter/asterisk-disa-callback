@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Asterisk-disa-callback by instantwater</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Asterisk-disa-callback</h1>
+        <h2>Asterisk DISA Callback</h2>
+        <a href="https://github.com/instantwater/asterisk-disa-callback" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="asterisk-disa-callback" class="anchor" href="#asterisk-disa-callback"><span class="octicon octicon-link"></span></a>asterisk-disa-callback</h1>
+
+<p>Asterisk DISA Callback</p>
+
+<h1>
+<a name="hu" class="anchor" href="#hu"><span class="octicon octicon-link"></span></a>HU:</h1>
+
+<p>Ez egy kis Asterisk konfig fájl gyűjtemény amivel úgynevezett DISA tárcsahangot kaphatsz visszahívással.
+Ezt arra tudod használni, hogy (dupla) VoIP percdíjért telefonálj, a felháborítóan magas GSM szolgáltatói percdíj helyett.</p>
+
+<p><strong><em>E LEÍRÁS HASZNÁLATÁHOZ ASTERISKET KELL TELEPÍTENED A GÉPEDRE, VALAMINT SZÜKSÉGED LESZ LEGALÁBB 2 VAGY 3 SIP FIÓKRA</em></strong></p>
+
+<h2>
+<a name="hogyan-m%C5%B1k%C3%B6dik" class="anchor" href="#hogyan-m%C5%B1k%C3%B6dik"><span class="octicon octicon-link"></span></a>Hogyan működik?</h2>
+
+<p>Egy telefonszám felhívásával visszahívást kérhetsz.
+Felhívsz egy telefonszámot, a központ nem veszi fel a hívásod, hanem egy foglalt jelzést küld vissza, így nem kerül pénzbe neked, tehát hívhatod akár külföldről, vagy olyan telefonról is aminek alacsony az egyenlege.</p>
+
+<p>A központ miután foglalt jelzést küldött, visszahív téged.</p>
+
+<p>Biztonsági okokból csak az engedélyezett számokat hívja vissza, így nem kell használnod semmiféle jelszót a híváshoz.</p>
+
+<p>Amikor felveszed a központ visszahívását, egy tárcsahangot fogsz kapni. </p>
+
+<p>Ekkor ha 1-9 ig nyomsz gombot, akkor a gyorshívásra betárolt számokat fogja hívni, ha olyat választottál ami üres memóriahely, akkor marad a választómenüben és újat próbálhatsz, ha 0-t nyomsz, akkor nem betárolt telefoszámot hívhatsz.</p>
+
+<p>Ha 0t nyomtál elkezdheted beütni a hívni kívánt telefonszámot nemzetközi formátumban. (A + jel helyett 00 tárcsázandó) majd miután begépelted a számot, nyomd meg a <strong>#</strong> gombot a hívás indításához).</p>
+
+<p>Ezután a központ felhívja a beütött számot, majd összekapcsol vele.</p>
+
+<p>A kimenő hívás hívóazonosítója a visszahívást fogadó telefonszám lesz. Tehát olyan, mintha a saját számodról hívnád. Ezen funkció helyes működéséhez ne felejtsd el hozzáadni a (FVD/BC) webes felületen a telefonszámot, mert csak azokat a telefoszámokat tudja kijelezni a rendszer amik meg lettek erősítve korábban.</p>
+
+<h2>
+<a name="hogyan-haszn%C3%A1ld-ezt-a-le%C3%ADr%C3%A1st" class="anchor" href="#hogyan-haszn%C3%A1ld-ezt-a-le%C3%ADr%C3%A1st"><span class="octicon octicon-link"></span></a>Hogyan használd ezt a leírást:</h2>
+
+<p>Magyarázat a konfig fájlok szekcióihoz:</p>
+
+<h3>
+<a name="extensions_globalconf" class="anchor" href="#extensions_globalconf"><span class="octicon octicon-link"></span></a>extensions_global.conf</h3>
+
+<p>Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más paramétereket.</p>
+
+<p><strong>ALLOWED_NUMBER_0 .. n</strong><br>
+Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
+Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.</p>
+
+<p><strong>ALLOW_INTERNALS_OUTBOUND</strong><br>
+Belső mellékek kimenő irányú hívásainak engedélyezése.
+Be: <strong>ON</strong><br>
+Ki: <strong>OFF</strong></p>
+
+<p><strong>RECORD_CALL</strong><br>
+Hívásrögzítés bekapcsolása.<br>
+Be: <strong>ON</strong><br>
+Ki: <strong>OFF</strong></p>
+
+<p><strong>RECORD_FORMAT</strong><br>
+Hívásrögzítési formátum.<br>
+Alapértelmezett <strong>wav</strong>.</p>
+
+<p><strong>RECORD_PATH</strong><br>
+Hívásrögzítési útvonal. <br>
+Alapértelmezett: <strong>/var/spool/asterisk/monitor/</strong></p>
+
+<p><strong>REWRITE_COUNTRY</strong><br>
+Azon országnak a kódja amelyiknek a helyi telefonszám formátumát át szeretnénk írni nemzetközi formátumba hívószámkijelzéshez.
+Jelenleg csak a "hu" kód él.
+Átalakítja a 06 os számokat 0036 os számokká.
+Ha csak 7 számjegyű a hívóazonosító érkezik, eléfűzi a 0621 előtagot.
+Ha nem magyar szám érkezik (pl 0044...) akkor nem ír át semmit.
+Ez azt jelenti, hogy engedélyezett számnak lehet vegyesen magyar és külföldk számot is megadni.
+FONTOS, hogy a visszahíváskérést fogadó telefonszám MAGYAR legyen. 
+(Pl valamilyen 21 es körzetű szám)</p>
+
+<p><strong>TRUNK_CALLBACK</strong><br>
+Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
+(A fiók neve a sip_providers.conf ban lévő kategória neve.)</p>
+
+<p><strong>TRUNK_CALLBACK_MAX_CALLS</strong><br>
+A visszahívást indító SIP fiókon engedélyezett egyidejű hívások száma.</p>
+
+<p><strong>TRUNK_OUTGOING</strong><br>
+Annak a SIP fióknak a neve amelyiken a kimenő hívást szeretnénk indítani.
+(A fiók neve a sip_providers.conf ban lévő kategória neve.)</p>
+
+<p><strong>TRUNK_OUTGOING_MAX_CALLS</strong><br>
+A kimenő hívást indító SIP fiókon engedélyezett egyidejű hívások száma.</p>
+
+<p><strong>TRIGGER_NUMBER</strong><br>
+Erre a számra érkezik a visszahívási kérelem. (Példa: 0621380....)
+(Jelenleg nem használt)</p>
+
+<p><strong>QUICKDIAL_1 .. 9</strong><br>
+Gyorshívás gombok telefonszámai 1-9</p>
+
+<h3>
+<a name="extensionsconf" class="anchor" href="#extensionsconf"><span class="octicon octicon-link"></span></a>extensions.conf</h3>
+
+<p><strong>[disa-request]</strong><br>
+A visszahívási kérelem ebbe a contextbe fog érkezni.
+Itt dől el, hogy engedélyezett számról van-e szó, és visszahívható-e?</p>
+
+<p><strong>[disa-out]</strong><br>
+Ez a context kéri be a gyorshívást, 0 megnyomása esetén pedig a hívandó telefonszámot. 
+Jelenleg ez a context tárcsahangot ad.</p>
+
+<p><strong>[outbound]</strong><br>
+A tárcsahangnál beütött telefonszám hívása ezen a contexten keresztül fog megtörténni.</p>
+
+<p><strong>[busy]</strong><br>
+Ennek a contextnek a foglalt jelzés küldés a célja.</p>
+
+<p><strong>[hangup]</strong><br>
+Ennek a contextnek a hívásmegszakítás a célja.</p>
+
+<p><strong>[hangup-context]</strong><br>
+Jelenleg nem használt.</p>
+
+<p><strong>[originate-context]</strong><br>
+Ezen a contexten keresztül végezzük a hívószámkijelzéses visszahívás indítását.</p>
+
+<p><strong>[macro-sip-dialer]</strong><br>
+Ez a makró végez minden kimenő hívásindítást, az alapján, hogy az egyidőben engedélyezett hívások számát túlléptük e.</p>
+
+<p><strong>[macro-stdvoip]</strong><br>
+Jelenleg nem használt.
+(A sip-dialer egyszerűsített verziója)</p>
+
+<p><strong>[macro-international-format]</strong><br>
+Ez a makró végzi eg a telefonszámok helyi formátumról (06) nemzetközi formátumra (0036) alakítását.</p>
+
+<h3>
+<a name="extensions_internalconf" class="anchor" href="#extensions_internalconf"><span class="octicon octicon-link"></span></a>extensions_internal.conf</h3>
+
+<p>A belső mellékek routolását irányító dialplan részlet.</p>
+
+<h3>
+<a name="sipconf" class="anchor" href="#sipconf"><span class="octicon octicon-link"></span></a>sip.conf</h3>
+
+<p>Alap konfig fájl, ami további beállítófájlokat tölt be.</p>
+
+<h3>
+<a name="sip_clientsconf" class="anchor" href="#sip_clientsconf"><span class="octicon octicon-link"></span></a>sip_clients.conf</h3>
+
+<p>Belső mellékek konfigurációs fájlja.<br><strong>[client1](internal_clients)</strong> Egy mellék szekciója. Kívánt számban lemásolható.<br><strong>[client1]</strong> [Felhasználónév]<br><strong>secret</strong> Jelszó (Lehetőleg random, minimum 16 karakteres értéket állíts be jelszónak.)<br><strong>cid_number</strong> A mellék kimenő hívásokhoz küldendő hívóazonosítója.</p>
+
+<h3>
+<a name="sip_providersconf" class="anchor" href="#sip_providersconf"><span class="octicon octicon-link"></span></a>sip_providers.conf</h3>
+
+<p>Itt be kell állítanod a SIP fiókokat amiket használni szeretnél a hívások során.</p>
+
+<p>Alapesetben a <strong>bc_out</strong> az a fiók amelyik visszahív, <strong>fvd_out</strong> pedig a kimenő hívás fiókja.
+<strong>NeoPhoneX-in</strong> a visszahívási kérelmet fogadó fiók.</p>
+
+<h3>
+<a name="sip_registersconf" class="anchor" href="#sip_registersconf"><span class="octicon octicon-link"></span></a>sip_registers.conf</h3>
+
+<p>A visszahívási kérelmet fogadó fiókot ebben a fájlban is be kell állítanod.
+Célszerű IP címet megadni URL helyett egyes eszközökön.</p>
+
+<h2>
+<a name="hardverplatform-konfigur%C3%A1ci%C3%B3k" class="anchor" href="#hardverplatform-konfigur%C3%A1ci%C3%B3k"><span class="octicon octicon-link"></span></a>Hardverplatform konfigurációk</h2>
+
+<p>Erre a részre akkor lesz szükséged, ha valamilyen hardveren szeretnéd használni a konfig csomagot.</p>
+
+<h3>
+<a name="tp-link-tl-wr1043nd-openwrt" class="anchor" href="#tp-link-tl-wr1043nd-openwrt"><span class="octicon octicon-link"></span></a>TP-LINK TL-WR1043ND (OpenWRT)</h3>
+
+<p>A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmware használatával felteleptheted rá az Asterisk alközpontot. Ahhoz, hogy a mellékelt konfigfájlok megfelelően működjenek, az alábbi csomagokat érdemes teleptened (11.8.1-1 verzióval tesztelve):</p>
+
+<ul>
+<li>asterisk11</li>
+<li>asterisk11-app-originate</li>
+<li>asterisk11-app-read</li>
+<li>asterisk11-app-system</li>
+<li>asterisk11-codec-a-mu</li>
+<li>asterisk11-codec-adpcm</li>
+<li>asterisk11-codec-alaw</li>
+<li>asterisk11-codec-gsm</li>
+<li>asterisk11-codec-resample</li>
+<li>asterisk11-codec-ulaw</li>
+<li>asterisk11-func-groupcount</li>
+</ul><p>-Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:<br>
+ -<strong>src/gz snapshots <a href="http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/">http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/</a></strong></p>
+
+<p>Telepítés után engedélyezned kell a bekapcsoláskori indulást a <strong>System &gt; Startup</strong> fülön.</p>
+
+<p>Kézi: <br></p>
+
+<ul>
+<li>Indítás: <strong>/etc/init.d/asterisk start</strong><br>
+</li>
+<li>Leállítás: <strong>/etc/init.d/asterisk stop</strong><br>
+</li>
+<li>Újraindítás: <strong>/etc/init.d/asterisk restart</strong><br>
+</li>
+</ul><p>Asterisk konzol: <strong>asterisk -rvvvvvv</strong><br></p>
+
+<p>A hangfájlok elérési útja ezen az eszközön:<br><strong>/usr/lib/asterisk/sounds/</strong></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/instantwater/asterisk-disa-callback/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/instantwater/asterisk-disa-callback/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/instantwater/asterisk-disa-callback"></a> is maintained by <a href="https://github.com/instantwater">instantwater</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
