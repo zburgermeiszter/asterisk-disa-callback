@@ -2,6 +2,8 @@
 
 Asterisk DISA Callback
 
+[Ha támogatni szeretnéd a projektet, kattints ide](http://jsfiddle.net/f3xjn/6/embedded/result/)
+
 #HU:
 Ez egy kis Asterisk konfig fájl gyűjtemény amivel úgynevezett DISA tárcsahangot kaphatsz visszahívással.
 Ezt arra tudod használni, hogy (dupla) VoIP percdíjért telefonálj, a felháborítóan magas GSM szolgáltatói percdíj helyett.
