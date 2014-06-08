@@ -33,6 +33,26 @@ A kimenő hívás hívóazonosítója a visszahívást fogadó telefonszám lesz
 
 Magyarázat a konfig fájlok szekcióihoz:
 
+###extensions_config.conf
+
+Ez a fájl tartalmazza a belső mellékek konfigurációját. Egy mellék **100** tól végtelenig terjedő tartományból kaphat számot. A mellékeket lehet irányítani telefonszámra, belső felhasználónévre, illetve feltételes átirányítással további mellékre.
+
+**EXT_1111=0036207654321**<br>
+Ez a sor megadja a **1111** es számú mellék célját, ami jelen esetben egy telefonszám amit a kimenő SIP fiókon fog felhívni.<br>
+<br>
+**EXT_1111_NOANSWER=EXT_2222**<br>
+Ez a sor megadja, hogy mi történjen, ha a **1111** számú mellék nem válaszol (nem veszi fel) a hívásra. A példa szerint átirányítja a **2222** számú mellékre.<br>
+**FONTOS:** Átirányítani jelenleg csak másik mellékre lehet!<br>
+<br>
+**EXT_2222=0036301234567**<br>
+Ez a sor megadja a **2222** es számú mellék célját, ami jelen esetben egy telefonszám amit a kimenő SIP fiókon fog felhívni.<br>
+<br>
+**EXT_2222_NOANSWER=EXT_5555**<br>
+Ez a sor megadja, hogy mi történjen, ha a **2222** számú mellék nem válaszol (nem veszi fel) a hívásra. A példa szerint átirányítja a **5555** számú mellékre.<br>
+<br>
+**EXT_5555=client1**<br>
+Ez a sor megadja a **2222** es számú mellék célját, ami jelen esetben egy helyi felhasználónév.
+
 ###extensions_global.conf
 
 Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más paramétereket.
@@ -42,9 +62,10 @@ Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést.
 Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.
 
 **ALLOW_INTERNALS_OUTBOUND**<br>
-Belső mellékek kimenő irányú hívásainak engedélyezése.
+Belső **FELHASZNÁLÓK** kimenő irányú hívásainak engedélyezése.<br>
 Be: **ON**<br>
-Ki: **OFF**
+Ki: **OFF**<br>
+**FONTOS:** Jelenleg, ha ez **OFF** on van, tehát csak belső mellékek hívása engedélyezett, de egy mellék célja egy külső telefonszám, akkor ez a beállítás figyelmen kívül hagyásra kerül.
 
 **RECORD_CALL**<br>
 Hívásrögzítés bekapcsolása.<br>
@@ -68,6 +89,12 @@ Ha nem magyar szám érkezik (pl 0044...) akkor nem ír át semmit.
 Ez azt jelenti, hogy engedélyezett számnak lehet vegyesen magyar és külföldk számot is megadni.
 FONTOS, hogy a visszahíváskérést fogadó telefonszám MAGYAR legyen. 
 (Pl valamilyen 21 es körzetű szám)
+
+**TIMEOUT_RING_OUTBOUND=60**<br>
+Kimenő hívás csengetési időkorlátja másodpercben.
+
+**TIMEOUT_RING_EXT=60**<br>
+Belső mellékre irányuló hívás csengetési időkorlátja másodpercben.
 
 **TRUNK_CALLBACK**<br>
 Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
