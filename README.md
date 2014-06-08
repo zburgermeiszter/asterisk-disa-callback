@@ -37,21 +37,17 @@ Magyarázat a konfig fájlok szekcióihoz:
 
 Ez a fájl tartalmazza a belső mellékek konfigurációját. Egy mellék **100** tól végtelenig terjedő tartományból kaphat számot. A mellékeket lehet irányítani telefonszámra, belső felhasználónévre, illetve feltételes átirányítással további mellékre.
 
+**!!! TESZTELENDŐ !!!**
+
 **EXT_1111=0036207654321**<br>
 Ez a sor megadja a **1111** es számú mellék célját, ami jelen esetben egy telefonszám amit a kimenő SIP fiókon fog felhívni.<br>
 <br>
-**EXT_1111_NOANSWER=EXT_2222**<br>
-Ez a sor megadja, hogy mi történjen, ha a **1111** számú mellék nem válaszol (nem veszi fel) a hívásra. A példa szerint átirányítja a **2222** számú mellékre.<br>
-**FONTOS:** Átirányítani jelenleg csak másik mellékre lehet!<br>
+**EXT_1111_BUSY=client1**<br>
+Ez a sor megadja, hogyha a **1111** es számú mellék foglalt (vigyázat, mobilnál általában 2 bejövő hívás engedélyezett), akkor hívja a **client1** felhasználót.<br>
 <br>
-**EXT_2222=0036301234567**<br>
-Ez a sor megadja a **2222** es számú mellék célját, ami jelen esetben egy telefonszám amit a kimenő SIP fiókon fog felhívni.<br>
-<br>
-**EXT_2222_NOANSWER=EXT_5555**<br>
-Ez a sor megadja, hogy mi történjen, ha a **2222** számú mellék nem válaszol (nem veszi fel) a hívásra. A példa szerint átirányítja a **5555** számú mellékre.<br>
-<br>
-**EXT_5555=client1**<br>
-Ez a sor megadja a **2222** es számú mellék célját, ami jelen esetben egy helyi felhasználónév.
+**EXT_1111_NOANSWER=0036201234567**<br>
+Ez a sor megadja, hogy mi történjen, ha a **1111** számú mellék nem válaszol (nem veszi fel) a hívásra. A példa szerint átirányítja a **0036201234567** számra amit a kimenő SIP fiókkal fog felhívni.<br>
+Telenoros számmal kikapcsolt (repülő mód) telefon esetén is illetve ha elutasítja a hívott fél a hívást (kinyomja) akkos **NOANSWER** válasz jön vissza.<br>
 
 ###extensions_global.conf
 
@@ -80,6 +76,12 @@ Alapértelmezett **wav**.
 Hívásrögzítési útvonal. <br>
 Alapértelmezett: **/var/spool/asterisk/monitor/**
 
+**REGEX_INTERNATIONAL**<br>
+Nemzetközi hívószám formátumra illeszkedő reguláris kifejezés minta.
+
+**REGEX_INTERNAL_EXT**<br>
+Belső mellék számára illeszkedő reguláris kifejezés minta.
+
 **REWRITE_COUNTRY**<br>
 Azon országnak a kódja amelyiknek a helyi telefonszám formátumát át szeretnénk írni nemzetközi formátumba hívószámkijelzéshez.
 Jelenleg csak a "hu" kód él.
@@ -90,11 +92,8 @@ Ez azt jelenti, hogy engedélyezett számnak lehet vegyesen magyar és külföld
 FONTOS, hogy a visszahíváskérést fogadó telefonszám MAGYAR legyen. 
 (Pl valamilyen 21 es körzetű szám)
 
-**TIMEOUT_RING_OUTBOUND=60**<br>
-Kimenő hívás csengetési időkorlátja másodpercben.
-
-**TIMEOUT_RING_EXT=60**<br>
-Belső mellékre irányuló hívás csengetési időkorlátja másodpercben.
+**TIMEOUT_RING=60**<br>
+Hívás csengetési időkorlátja másodpercben.
 
 **TRUNK_CALLBACK**<br>
 Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
@@ -102,6 +101,12 @@ Annak a SIP fióknak a neve amelyiken a visszahívást szeretnénk indítani.
 
 **TRUNK_CALLBACK_MAX_CALLS**<br>
 A visszahívást indító SIP fiókon engedélyezett egyidejű hívások száma.
+
+**TRUNK_INTERNAL**<br>
+Asterisken belüli hívások csoportazonosítója.
+
+**TRUNK_INTERNAL_MAX_CALLS**<br>
+Asterisken belül megengedett maximális hívások száma.
 
 **TRUNK_OUTGOING**<br>
 Annak a SIP fióknak a neve amelyiken a kimenő hívást szeretnénk indítani.
