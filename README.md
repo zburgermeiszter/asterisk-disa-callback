@@ -39,7 +39,8 @@ Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más par
 
 **ALLOWED_NUMBER_0 .. n**<br>
 Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
-Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3), illetve az extensions.conf ban is le kell másolnod a megfelelő sorokat, és az új változóneveket kell használnod.
+Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3).
+Bármennyi telefonszámot felvehetsz, egyetlen megkötés, hogy ne legyen üres változó. Tehát, ha törölni szeretnél egy telefonszámot, akkor írj a helyére 0-t vagy valami szót, ami nem egy kliensnek a neve.
 
 **ALLOW_INTERNALS_OUTBOUND**<br>
 Belső mellékek kimenő irányú hívásainak engedélyezése.
