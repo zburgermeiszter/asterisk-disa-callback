@@ -38,7 +38,7 @@ Magyarázat a konfig fájlok szekcióihoz:
 Ez a fájl tartalmazza a dialplan által használt telefonszámokat és más paramétereket.
 
 **ALLOWED_NUMBER_0 .. n**<br>
-Aon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
+Azon telefonszám amelyiknek engedélyezni szeretnénk a visszahívási kérést. Ezt a sort a kívánt számban lemásolhatod egymás alá aszerint, hogy hány telefonszámnak szeretnéd engedélyezni a rendszer használatát. (Példa: 0036209876543)
 Amennyiben több telefonszámnak szeretnéd engedélyeznia rendszer használatát változtatnod kell a változó nevében szereplő számot, (0..1..2..3).
 Bármennyi telefonszámot felvehetsz, egyetlen megkötés, hogy ne legyen üres változó. Tehát, ha törölni szeretnél egy telefonszámot, akkor írj a helyére 0-t vagy valami szót, ami nem egy kliensnek a neve.
 
@@ -171,8 +171,8 @@ A TP-LINK TL-WR1043ND router egy igen népszerű router manapság. OpenWRT firmw
 - asterisk11-codec-ulaw
 - asterisk11-func-groupcount
 
--Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a ** System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:<br>
- -**src/gz snapshots http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/**
+Ezeket a csomagokat egy úgynevezett csomagtárolóból tudod letölteni, ehhez nyisd meg a **System &gt; Software &gt; Configuration** panelt, és szúrd be a következő sort a szövegmező elejére:<br>
+**src/gz snapshots http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/**
 
 Telepítés után engedélyezned kell a bekapcsoláskori indulást a **System &gt; Startup** fülön.
 
