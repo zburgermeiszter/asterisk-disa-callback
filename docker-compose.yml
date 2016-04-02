@@ -1,0 +1,7 @@
+version: '2'
+services:
+  asterisk:
+    build: asterisk11
+    network_mode: host
+    ports:
+      - 5060:5060
