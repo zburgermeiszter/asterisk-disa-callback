@@ -47,6 +47,10 @@ Belső mellékek kimenő irányú hívásainak engedélyezése.
 Be: **ON**<br>
 Ki: **OFF**
 
+**DIRECT_CALLBACK_n_TRIGGER**<br>
+**DIRECT_CALLBACK_n_CALLEE**<br>
+**Direct Callback**: Egy olyan speciális visszahívás mód, ahol visszahívás után nem 1-9-ig előre beprogramozott gyorshívó számokból lehet választani, hanem a **DIRECT_CALLBACK_n_TRIGGER** számra (erre a számra érkezik a visszahívási kérelem, általában ez egy 0621 es szám) érkező hívás esetén visszahívás után azonnal a **DIRECT_CALLBACK_n_CALLEE** számmal kapcsol össze. Így lehet közvetlenűl visszahívással további adatok begépelése nélkül hívást indítani. Ez nagy segítség, hiszen ez korlátlan számban konfigurálható a gyorshívó 9 memóriahelyével szemben, továbbá nem kell emlékezni, hogy ki hová van programozva, hanem a trigger számot elmentve a telefonkönyvbe, azonnal a hívandó féllel kapcsol össze a rendszer visszahívás után. Ezen funkció használatához szükség van n darab bejövő hívást fogadni tudó SIP fiókra.
+
 **RECORD_CALL**<br>
 Hívásrögzítés bekapcsolása.<br>
 Be: **ON**<br>
