@@ -1,10 +1,8 @@
 version: '2'
 services:
   asterisk:
-    build: asterisk11
+    image: zburgermeiszter/asterisk:11-with-samples
     network_mode: host
-    ports:
-      - 5060:5060
     volumes:
       - ./asterisk11/etc/asterisk/extensions.conf:/etc/asterisk/extensions.conf
       - ./asterisk11/etc/asterisk/extensions_global.conf:/etc/asterisk/extensions_global.conf
