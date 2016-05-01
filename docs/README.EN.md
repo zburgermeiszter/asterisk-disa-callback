@@ -26,7 +26,6 @@ Explanation of config file sections:
 
 The callback trigger call will arrive to this context.
 
-**&lt;trigger_number&gt;** The number that receive the trigger call. (Example: 0621380....)
 **&lt;allowed_number&gt;** The number that allowed to request callback. You can duplicate this line as much number as you want. (Example: 0036209876543)
 
 **[outbound]**
