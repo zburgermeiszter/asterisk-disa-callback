@@ -5,3 +5,11 @@ services:
     network_mode: host
     ports:
       - 5060:5060
+    volumes:
+      - ./asterisk11/etc/asterisk/extensions.conf:/etc/asterisk/extensions.conf
+      - ./asterisk11/etc/asterisk/extensions_global.conf:/etc/asterisk/extensions_global.conf
+      - ./asterisk11/etc/asterisk/extensions_internal.conf:/etc/asterisk/extensions_internal.conf
+      - ./asterisk11/etc/asterisk/sip.conf:/etc/asterisk/sip.conf
+      - ./asterisk11/etc/asterisk/sip_clients.conf:/etc/asterisk/sip_clients.conf
+      - ./asterisk11/etc/asterisk/sip_providers.conf:/etc/asterisk/sip_providers.conf
+      - ./asterisk11/etc/asterisk/sip_registers.conf:/etc/asterisk/sip_registers.conf
